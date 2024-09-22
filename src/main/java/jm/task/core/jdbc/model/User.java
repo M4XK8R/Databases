@@ -1,62 +1,73 @@
 package jm.task.core.jdbc.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
-@Table
+@Entity
+@Table(name = "users")
 public class User {
-    @Id
-    private Long id;
 
-    @Column
-    private String name;
+  @Id
+  @GeneratedValue(generator = "increment")
+  private Long id;
 
-    @Column
-    private String lastName;
+  @Column
+  private String name;
 
-    @Column
-    private Byte age;
+  @Column
+  private String lastName;
 
-    public User() {
+  @Column
+  private Byte age;
 
-    }
+  public User() {
 
-    public User(String name, String lastName, Byte age) {
-        this.name = name;
-        this.lastName = lastName;
-        this.age = age;
-    }
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public User(String name, String lastName, Byte age) {
+    this.name = name;
+    this.lastName = lastName;
+    this.age = age;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public Byte getAge() {
-        return age;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public void setAge(Byte age) {
-        this.age = age;
-    }
+  public Byte getAge() {
+    return age;
+  }
+
+  public void setAge(Byte age) {
+    this.age = age;
+  }
+
+  @Override
+  public String toString() {
+    return "User [id=" + id + ", name=" + name + ", age=" + age + "]";
+  }
 }
