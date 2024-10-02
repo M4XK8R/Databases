@@ -3,7 +3,7 @@ package jm.task.core.jdbc.dao;
 import java.util.ArrayList;
 import java.util.List;
 import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.util.Util;
+import jm.task.core.jdbc.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,7 +16,7 @@ public class UserDaoHibernateImpl implements UserDao {
   public void createUsersTable() {
     Transaction transaction = null;
 
-    try (Session session = Util.sessionFactory.openSession()) {
+    try (Session session = HibernateUtil.sessionFactory.openSession()) {
       transaction = session.beginTransaction();
       String sql =
           "CREATE TABLE IF NOT EXISTS users (" +
@@ -43,7 +43,7 @@ public class UserDaoHibernateImpl implements UserDao {
   public void dropUsersTable() {
     Transaction transaction = null;
 
-    try (Session session = Util.sessionFactory.openSession()) {
+    try (Session session = HibernateUtil.sessionFactory.openSession()) {
       String sql = "DROP TABLE IF EXISTS users";
       transaction = session.beginTransaction();
       session
@@ -67,7 +67,7 @@ public class UserDaoHibernateImpl implements UserDao {
   ) {
     Transaction transaction = null;
 
-    try (Session session = Util.sessionFactory.openSession()) {
+    try (Session session = HibernateUtil.sessionFactory.openSession()) {
       transaction = session.beginTransaction();
 
       session.save(
@@ -87,7 +87,7 @@ public class UserDaoHibernateImpl implements UserDao {
   public void removeUserById(long id) {
     Transaction transaction = null;
 
-    try (Session session = Util.sessionFactory.openSession()) {
+    try (Session session = HibernateUtil.sessionFactory.openSession()) {
       transaction = session.beginTransaction();
       User user = session.get(User.class, id);
 
@@ -109,7 +109,7 @@ public class UserDaoHibernateImpl implements UserDao {
     Transaction transaction = null;
     List<User> users = new ArrayList<>();
 
-    try (Session session = Util.sessionFactory.openSession()) {
+    try (Session session = HibernateUtil.sessionFactory.openSession()) {
       transaction = session.beginTransaction();
       users.addAll(
           session.createQuery(
@@ -132,7 +132,7 @@ public class UserDaoHibernateImpl implements UserDao {
   public void cleanUsersTable() {
     Transaction transaction = null;
 
-    try (Session session = Util.sessionFactory.openSession()) {
+    try (Session session = HibernateUtil.sessionFactory.openSession()) {
       transaction = session.beginTransaction();
       String sql = "DELETE FROM User";
       session

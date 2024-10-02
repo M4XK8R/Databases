@@ -26,7 +26,10 @@ public class Main {
         .forEach(System.out::println);
 
     userService.cleanUsersTable();
+    System.out.println("After clean all users");
+
     userService.dropUsersTable();
+    System.out.println("After drop all users");
   }
 }
 
